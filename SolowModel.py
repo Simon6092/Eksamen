@@ -82,19 +82,6 @@ class SolowModelClass:
         return result.root
 
     def simulate(self,s,k0=None):
-        """ simulate the model forward in time
-
-        Args:
-
-            s (float or ndarray): savings rate, a number (constant over time) or
-                an array with par.T elements (time-varying)
-            k0 (float,optional): initial capital per worker, par.k0 is used if None
-
-        Returns:
-
-            (SimpleNamespace): the simulated paths, also stored in self.sim
-
-        """
 
         par = self.par
         sim = self.sim
@@ -132,8 +119,6 @@ class SolowModelClass:
 
     # the savings path s_t = s_bar + (s0-s_bar)*phi**t
     def s_path(self,s0,phi):
-        """ the savings rule from eq. (6): s_t = s_bar + (s0-s_bar)*phi**t,
-        for t = 0,1,...,T-1, always returning to the long-run level par.s_bar """
 
         par = self.par
         t = np.arange(par.T)
@@ -160,19 +145,11 @@ class SolowModelClass:
 
 
 def copy_sim(sim):
-    """ model.simulate() always overwrites self.sim and returns that same
-    object, so running several rules one after another would silently make
-    every earlier "result" point to the same (now overwritten) object. This
-    makes an independent copy of the five arrays we need, right after
-    simulating, using the plain numpy .copy() method. """
 
     return SimpleNamespace(s=sim.s.copy(),k=sim.k.copy(),y=sim.y.copy(),i=sim.i.copy(),c=sim.c.copy())
 
 
 def s_path_general(model,s0,phi,s_target):
-    """ same shape as model.s_path, but for an arbitrary long-run target
-    level. model.s_path always uses par.s_bar (eq. 6); Question 5 needs a
-    free long-run level s_infinity that the optimizer chooses. """
 
     t = np.arange(model.par.T)
 
@@ -180,11 +157,6 @@ def s_path_general(model,s0,phi,s_target):
 
 
 def s_path_alt(model,s0,p,s_target):
-    """ the alternative rule proposed in Question 6: hyperbolic (power-law)
-    decay instead of the geometric decay in (6),
-    s_t = s_target + (s0-s_target)/(1+t)**p. At t=0 this gives s_0=s0, the
-    same boundary condition as (6); as t -> inf, (1+t)**(-p) -> 0, so
-    s_t -> s_target and the economy still ends in a steady state. """
 
     t = np.arange(model.par.T)
 
@@ -192,8 +164,6 @@ def s_path_alt(model,s0,p,s_target):
 
 
 def simulate_rule(model,s0,phi,s_target=None):
-    """ simulate s_t=s_target+(s0-s_target)*phi**t (par.s_bar unless a
-    different s_target is given) and return a safe copy of the result """
 
     if s_target is None: s_target = model.par.s_bar
 
@@ -207,9 +177,6 @@ def simulate_rule_alt(model,s0,p,s_target):
 
 
 def grid_search(model,s0_grid,phi_grid):
-    """ evaluate model.evaluate(s0,phi) on every point of a simple grid and
-    keep the best one, exactly the same nested-loop pattern as
-    find_best_choice in the optimization problem set """
 
     W_grid = np.empty((len(s0_grid),len(phi_grid)))
     s0_best,phi_best,W_best = s0_grid[0],phi_grid[0],-np.inf
@@ -248,9 +215,6 @@ def welfare_table(model,sim_base,sims,names):
 
 
 def plot_three_panels(sim_base,sims=None,names=None,k_star=None,c_star=None,title=''):
-    """ the (s_t, k_t, c_t) figure used throughout this question: pass only
-    sim_base for the baseline alone (with k_star/c_star marked), or also
-    sims+names to compare several rules against the baseline """
 
     fig = plt.figure(figsize=(13,4.5))
     ax_s = fig.add_subplot(1,3,1)

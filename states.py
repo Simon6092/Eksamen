@@ -1,10 +1,3 @@
-""" helper data for Problem 1: US states
-
-Contains the list of state abbreviations used to build the FRED series names,
-and a mapping from each state to its Census region.
-
-"""
-
 # the 50 states (the FRED series names are e.g. 'ALRGSP' and 'ALPOP' for Alabama)
 STATES = [
     'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA',
