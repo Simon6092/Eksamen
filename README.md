@@ -13,6 +13,8 @@ This project contains our solutions to the three problems in the Programming for
 
 Open `Exam_2026.ipynb` in the same folder as the `.py` files and run all cells from the top.
 
+**Only one device can run the code at a time, because of the API key.**
+
 The project uses `numpy`, `scipy`, `pandas`, `matplotlib` and `fredapi`.
 
 ## Contributions
