@@ -159,12 +159,6 @@ class SolowModelClass:
         return self.welfare(sim.c)
 
 
-# ==========================================================================
-# below: extra, simple helper code for Questions 2.2-2.6, kept out of the
-# notebook. Nothing here is more advanced than what model.simulate/s_path/
-# welfare/evaluate above already do.
-# ==========================================================================
-
 def copy_sim(sim):
     """ model.simulate() always overwrites self.sim and returns that same
     object, so running several rules one after another would silently make
