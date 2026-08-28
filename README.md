@@ -25,7 +25,7 @@ The work on the exam project was mainly divided as follows:
 
 ## Fred API
 
-**Only one device can run the code at a time, because of the API key.**
+Only one device can run the code at a time, because of the API key.
 
 **Api key used for Fred:** 4f86a7b51eb44046f4bc746cb4acc02a
 
