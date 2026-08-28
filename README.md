@@ -11,7 +11,7 @@ This project contains our solutions to the three problems in the Programming for
 
 ## Running the project
 
-Open `Exam_2026.ipynb` in the same folder as the `.py` files and run all cells from the top.
+Open `Results.ipynb` in the same folder as the `.py` files and run all cells from the top.
 
 The project uses `numpy`, `scipy`, `pandas`, `matplotlib` and `fredapi`.
 
